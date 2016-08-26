@@ -6,6 +6,8 @@
 
 var winCount = 0;
 var gameOver = true;
+var playerCharacter = null;
+var playerOpponent = null;
 var players = [ 'Ryu', 'Chun', 'Ken', 'Cammy', 'Blanka', 'Bison' ];
 
 $( document ).ready(function() {
@@ -14,6 +16,7 @@ $( document ).ready(function() {
 
 function startGame() {
 
+    // When the game starts, the player will choose a character by clicking on the fighter's picture. The player will fight as that character for the rest of the game.
 
     console.log( "loading players!" );
 
@@ -38,11 +41,36 @@ function startGame() {
         $(player).appendTo("#arena");
     }
     gameOver = false;
+
+    $('.playerSelect').on('click', function() {
+        /*
+         When you click on a playerSelect div
+         */
+        if((playerCharacter === null ) ){
+            playerCharacter = $(this).data('player');
+            console.log('You are now playing as ' + playerCharacter);
+            $(this).addClass('col-sm-6');
+            $(this).removeClass('col-sm-2 playerSelect');
+        }else if ((playerOpponent === null)){
+            // The player chooses an opponent by clicking on an enemy's picture.
+            playerOpponent = $(this).data('player');
+            console.log('You are now playing against ' + playerOpponent);
+            $(this).addClass('col-sm-6');
+            $(this).removeClass('col-sm-2 playerSelect');
+        }
+    });
+
 }
+
+
+// Click functions below
 
 $( "#startGame" ).click(function() {
     // alert( "Handler for .click() called." );
     startGame();
 });
+
+
+
 
 });
