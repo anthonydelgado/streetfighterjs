@@ -36,8 +36,8 @@
       <file leaf-file-name="game.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+            <state relative-caret-position="677">
+              <caret line="142" column="40" selection-start-line="142" selection-start-column="40" selection-end-line="142" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -120,6 +120,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/streetfighterjs/index.html">
@@ -184,12 +185,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1472275289276</updated>
-      <workItem from="1472275290432" duration="521000" />
+      <workItem from="1472275290432" duration="1407000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="521000" />
+    <option name="totallyTimeSpent" value="1407000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="977" extended-state="6" />
@@ -243,15 +244,15 @@
         <state relative-caret-position="120">
           <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
           <folding>
-            <element signature="e#6#85#0#PHP" expanded="true" />
+            <element signature="e#6#85#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+        <state relative-caret-position="677">
+          <caret line="142" column="40" selection-start-line="142" selection-start-column="40" selection-end-line="142" selection-end-column="40" />
           <folding />
         </state>
       </provider>

@@ -25,9 +25,6 @@ $(document).ready(function () {
 
     function soundEffect(filename, filetype = 'wav') {
       // use jQuery to insert an HTML5 audio element into the DOM
-    // <audio autoplay>
-    // <source src="horse.ogg" type="audio/wav">
-    // </audio>
         var player = $('<audio />', {
             autoPlay : 'autoplay'
         });
@@ -75,6 +72,7 @@ $(document).ready(function () {
                 console.log('You are now playing as ' + playerCharacter);
                 $(this).addClass('col-sm-6');
                 $(this).removeClass('col-sm-2 playerSelect');
+                soundEffect('playerSelect');
             } else if ((playerOpponent === null)) {
                 // the next selection is your opponent
                 // The player chooses an opponent by clicking on an enemy's picture.
@@ -100,6 +98,23 @@ $(document).ready(function () {
 
         $("#playerOpponentHealthBar").css('width', playerOpponentHealth + "%");
 
+        if(playerCharacter === 'Ryu'){
+
+            soundEffect('hadouken');
+
+        }else if(playerCharacter === 'Ken') {
+
+            soundEffect('shoryuken');
+
+        }else if(damageOpponent > 15){
+
+            soundEffect('hardPunch');
+
+        }else{
+
+            soundEffect('punch');
+        }
+
         // if your Opponents Health is less than 1 after this attack you win!
         if (playerOpponentHealth < 1) {
             swal('You Win!');
@@ -116,6 +131,23 @@ $(document).ready(function () {
                 playerCharacterHealth = playerCharacterHealth - damageCharacter;
 
                 console.log(playerCharacter + 's health is now ' + playerCharacterHealth + ' reduced by ' + damageCharacter);
+
+                if(playerOpponent === 'Ryu'){
+
+                    soundEffect('hadouken');
+
+                }else if(playerOpponent === 'Ken') {
+
+                    soundEffect('shoryuken');
+
+                }else if(damageCharacter > 15){
+
+                    soundEffect('hardPunch');
+
+                }else{
+
+                    soundEffect('punch');
+                }
 
                 $("#playerCharacterHealthBar").css('width', playerCharacterHealth + "%");
                 if (playerCharacterHealth < 1) {
