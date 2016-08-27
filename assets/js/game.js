@@ -31,7 +31,7 @@ $(document).ready(function () {
         var player = $('<audio />', {
             autoPlay : 'autoplay'
         });
-        addSource(player, window.location.host + '/streetfighterjs/assets/sounds/' + filename + '.' + filetype);
+        addSource(player, '/assets/sounds/' + filename + '.' + filetype);
         $(player).appendTo("#arena");
     }
 
