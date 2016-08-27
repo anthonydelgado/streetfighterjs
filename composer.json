@@ -1,0 +1,11 @@
+{
+    "name": "user/streetfighterjs",
+    "description": "rpg game",
+    "authors": [
+        {
+            "name": "anthony delgado",
+            "email": "me@anthonydelgado.me"
+        }
+    ],
+    "require": {}
+}

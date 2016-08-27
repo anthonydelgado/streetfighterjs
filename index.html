@@ -9,18 +9,56 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!--Use bootstrap.min.js in production-->
     <!--<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    <!--Sweet Alerts-->
+    <script src="bower_components/sweetalert/dist/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css">
+    <!--custom game script-->
     <script src="assets/js/game.js"></script>
 </head>
 <body>
+<nav class="navbar">
+    <div class="col-xs-5">
+        <div id="playerCharacterHealth" class="progress">
+            <div id="playerCharacterHealthBar" class="progress-bar progress-bar-success" style="width: 100%">
+            </div>
+            <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 0%">
+            </div>
+            <div class="progress-bar progress-bar-danger" style="width: 0%">
+            </div>
+        </div>
+        <h5 id="playerCharacterText"></h5>
+    </div>
+    <div class="col-xs-1">
+       <h6>KO</h6>
+    </div>
+    <div class="col-xs-5">
+        <div id="playerOpponentHealth" class="progress">
+            <div id="playerOpponentHealthBar" class="progress-bar progress-bar-success" style="width: 100%">
+            </div>
+            <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 0%">
+            </div>
+            <div class="progress-bar progress-bar-danger" style="width: 0%">
+            </div>
+        </div>
+        <h5 id="playerOpponentText"></h5>
+    </div>
+</nav>
 <div class="container">
     <h1>StreetFight.JS!</h1>
-    <a id="startGame" class="btn btn-default" >Start Game</a>
-    
-    <div id="arena" class="row" >
+    <div class="row controls">
+        <a id="startGame" class="btn btn-default" >Start Game</a>
+        <a id="startAttack" class="btn btn-danger" >Attack</a>
 
     </div>
 
+    <div id="arena" class="row" >
+
+    </div>
+    <div id="defenderArea" class="row" >
+
+    </div>
 </div>
 </body>
 </html>
