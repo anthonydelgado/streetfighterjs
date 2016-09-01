@@ -1,0 +1,38 @@
+.fightScreen, .playerScreen, .startScreen {
+    height: 100vh;
+    color: white;
+
+}
+.startScreen {
+    background-color: #0f0f0f;
+}
+.playerScreen {
+    background-color: royalblue;
+    background: url(../images/map.gif) no-repeat;
+    background-size: cover;
+
+}
+.fightScreen {
+    background-color: #0f0f0f;
+    background: url('../images/sf6-bg.gif') no-repeat;
+    background-size: cover;
+}
+
+.playerAvatar {
+    width: 100px;
+}
+div#arena, .img-map {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.playerSelect img:hover, .playerSelected img {
+    border: 5px solid red;
+}
+.opponentSelect img:hover, .opponentSelected img {
+    border: 5px solid blue;
+}
+
+.fighterAvatarPlayer {
+    transform: scaleX(-1);
+}

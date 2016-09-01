@@ -14,6 +14,8 @@ $(document).ready(function () {
     var playerOpponentHealth = 100;
     var players = ['Ryu', 'Chun', 'Ken', 'Cammy', 'Blanka', 'Bison'];
 
+    var opponentSelectDiv = $('.opponentSelect');
+    var playerSelectDiv = $('.playerSelect');
 
     console.log("game is ready!");
 
@@ -32,26 +34,95 @@ $(document).ready(function () {
         $(player).appendTo("#arena");
     }
 
+    function fightNow(playerFighter, opponentFighter) {
+
+
+        // fightNow(playerCharacter, playerOpponent);
+        // playerCharacter
+        //
+        // playerOpponent
+        //
+        // defenderArea
+        //
+        //
+
+        console.log(playerFighter + ' vs ' + opponentFighter);
+
+        //create player #1
+        var player = $('<div>');
+        player.addClass('col-xs-6');
+        player.attr('data-player', playerFighter);
+        player.attr('id', playerFighter);
+        // player.text(players[i]);
+
+        //create playerAvatar
+        var playerAvatar = $(document.createElement('img'));
+        playerAvatar.addClass('fighterAvatar');
+        playerAvatar.addClass('fighterAvatarPlayer');
+
+        playerAvatar.attr('data-player', playerFighter);
+        playerAvatar.attr('alt', playerFighter);
+        playerAvatar.attr('src', 'assets/images/players/' + playerFighter + '.gif');
+        // playerAvatar.text(players[i]);
+
+        //add playerAvatar to the player container
+        $(playerAvatar).appendTo(player);
+        // print players to the div with ID arena
+        $(player).appendTo("#defenderArea");
+
+        //create player #2 (Opponent)
+
+
+        //create player #1
+        var opponent = $('<div>');
+        opponent.addClass('col-xs-6');
+        opponent.attr('data-player', opponentFighter);
+        opponent.attr('id', opponentFighter);
+        // player.text(players[i]);
+
+        //create playerAvatar
+        var opponentAvatar = $(document.createElement('img'));
+        opponentAvatar.addClass('fighterAvatar');
+        opponentAvatar.addClass('fighterAvatarOpponent');
+        opponentAvatar.attr('data-player', opponentFighter);
+        opponentAvatar.attr('alt', opponentFighter);
+        opponentAvatar.attr('src', 'assets/images/players/' + opponentFighter + '.gif');
+        // playerAvatar.text(players[i]);
+
+        //add playerAvatar to the player container
+        $(opponentAvatar).appendTo(opponent);
+        // print players to the div with ID arena
+        $(opponent).appendTo("#defenderArea");
+
+        soundEffect('fight');
+
+    }
+
+
     function startGame() {
 
         // When the game starts, the player will choose a character by clicking on the fighter's picture. The player will fight as that character for the rest of the game.
 
         console.log("loading players!");
 
+        soundEffect('matchBegin');
+
+        $('.startScreen').fadeOut();
         for (var i = 0; i < players.length; i++) {
             console.log(players[i]);
             var player = $('<div>');
-            player.addClass('col-sm-4 playerSelect');
+            player.addClass('col-sm-4 text-center playerSelect playerSelector');
             player.attr('data-player', players[i]);
             player.attr('id', players[i]);
-            player.text(players[i]);
+            // player.text(players[i]);
 
             //create playerAvatar
-            var playerAvatar = $('<img>');
-            playerAvatar.addClass('img-responsive');
+            var playerAvatar = $(document.createElement('img'));
+            playerAvatar.addClass('playerAvatar');
             playerAvatar.attr('data-player', players[i]);
-            playerAvatar.attr('src', 'assets/images/players/' + players[i] + '.png');
-            playerAvatar.text(players[i]);
+            playerAvatar.attr('alt', players[i]);
+            playerAvatar.attr('src', 'assets/images/players/avatar/' + players[i] + '.png');
+            // playerAvatar.text(players[i]);
 
             //add playerAvatar to the player container
             $(playerAvatar).appendTo(player);
@@ -60,7 +131,7 @@ $(document).ready(function () {
         }
         gameOver = false;
 
-        $('.playerSelect').on('click', function () {
+        $('.playerSelector').on('click', function () {
             /*
              When you click on a playerSelect div
              */
@@ -70,27 +141,35 @@ $(document).ready(function () {
                 playerCharacter = $(this).data('player');
                 $('#playerCharacterText').text(playerCharacter);
                 console.log('You are now playing as ' + playerCharacter);
-                $(this).addClass('col-sm-6');
-                $(this).removeClass('col-sm-2 playerSelect');
+                // $(this).addClass('col-sm-6');
+                $(this).addClass('playerSelected');
+                $(this).removeClass('playerSelect');
+
+                $('.playerSelect').addClass('opponentSelect');
+                $('.playerSelect').removeClass('playerSelect');
+                opponentSelectDiv = $('.opponentSelect');
                 soundEffect('playerSelect');
-            } else if ((playerOpponent === null)) {
+            }else{
                 // the next selection is your opponent
                 // The player chooses an opponent by clicking on an enemy's picture.
                 playerOpponent = $(this).data('player');
                 $('#playerOpponentText').text(playerOpponent);
                 console.log('You are now playing against ' + playerOpponent);
-                $(this).addClass('col-sm-6');
-                $(this).removeClass('col-sm-2 playerSelect');
-                $('.playerSelect').fadeOut();
-                soundEffect('fight');
+                $(this).addClass('opponentSelected');
+                $(this).removeClass('opponentSelect');
+                $('.playerScreen').fadeOut();
+
+                fightNow(playerCharacter, playerOpponent);
             }
+
         });
+
 
     }
 
     function startAttack() {
 
-        var damageOpponent = Math.floor((Math.random() * 20) + 1);
+        var damageOpponent = Math.floor((Math.random() * 40) + 1);
 
         playerOpponentHealth = playerOpponentHealth - damageOpponent;
 
@@ -98,7 +177,15 @@ $(document).ready(function () {
 
         $("#playerOpponentHealthBar").css('width', playerOpponentHealth + "%");
 
-        if(playerCharacter === 'Ryu'){
+        if(damageOpponent > 30){
+
+            soundEffect('hardPunch');
+
+        }else if(damageOpponent < 12){
+
+            soundEffect('punch');
+
+        }else if(playerCharacter === 'Ryu'){
 
             soundEffect('hadouken');
 
@@ -106,7 +193,7 @@ $(document).ready(function () {
 
             soundEffect('shoryuken');
 
-        }else if(damageOpponent > 15){
+        }else if(damageOpponent > 25){
 
             soundEffect('hardPunch');
 
@@ -120,13 +207,19 @@ $(document).ready(function () {
             swal('You Win!');
             winCount++;
             gameOver = true;
+
+            soundEffect('you');
+            setTimeout(function () {
+                soundEffect('win');
+            }, 1000);
+            $('.fightScreen').fadeOut();
         } else {
 
             // if the Opponent is still alive damage the other player after 1 second
             setTimeout(function () {
 
 
-                var damageCharacter = Math.floor((Math.random() * 20) + 1);
+                var damageCharacter = Math.floor((Math.random() * 45) + 1);
 
                 playerCharacterHealth = playerCharacterHealth - damageCharacter;
 
@@ -154,6 +247,12 @@ $(document).ready(function () {
                     swal('You lose!');
                     loseCount++;
                     gameOver = true;
+
+                    soundEffect('you');
+                    setTimeout(function () {
+                    soundEffect('loose');
+                    }, 1000);
+                    $('.fightScreen').fadeOut();
                 }
             }, 1000);
 
@@ -181,3 +280,4 @@ $(document).ready(function () {
 
 
 });
+
