@@ -111,7 +111,7 @@ $(document).ready(function () {
         for (var i = 0; i < players.length; i++) {
             console.log(players[i]);
             var player = $('<div>');
-            player.addClass('col-sm-4 text-center playerSelect playerSelector');
+            player.addClass('col-xs-4 text-center playerSelect playerSelector');
             player.attr('data-player', players[i]);
             player.attr('id', players[i]);
             // player.text(players[i]);
@@ -140,8 +140,7 @@ $(document).ready(function () {
             if ((playerCharacter === null )) {
                 playerCharacter = $(this).data('player');
                 $('#playerCharacterText').text(playerCharacter);
-                console.log('You are now playing as ' + playerCharacter);
-                // $(this).addClass('col-sm-6');
+                console.log('You are now playing as ' + playerCharacter); 
                 $(this).addClass('playerSelected');
                 $(this).removeClass('playerSelect');
 
@@ -183,7 +182,7 @@ $(document).ready(function () {
         // empty players from player select screen
         $('#arena').empty();
 
-        // wait 2 sec before playering intro to restart game 
+        // wait 2 sec before playering intro to restart game
         setTimeout(function () {
             startGame();
         }, 2000);
