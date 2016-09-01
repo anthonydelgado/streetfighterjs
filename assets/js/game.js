@@ -31,12 +31,12 @@ $(document).ready(function () {
             autoPlay : 'autoplay'
         });
         addSource(player, '/assets/sounds/' + filename + '.' + filetype);
-        $(player).appendTo("#arena");
+        $(player).appendTo("body");
     }
 
     function fightNow(playerFighter, opponentFighter) {
 
-
+        $("#defenderArea").empty();
         // fightNow(playerCharacter, playerOpponent);
         // playerCharacter
         //
@@ -160,10 +160,33 @@ $(document).ready(function () {
                 $('.playerScreen').fadeOut();
 
                 fightNow(playerCharacter, playerOpponent);
+                $('.fightScreen').fadeIn();
             }
 
         });
 
+
+    }
+
+    function resetGame() {
+
+        gameOver = true;
+        playerCharacter = null;
+        playerCharacterHealth = 100;
+        playerOpponent = null;
+        playerOpponentHealth = 100;
+
+        //reset health bars tp 100%
+        $("#playerOpponentHealthBar").css('width', "100%");
+        $("#playerCharacterHealthBar").css('width', "100%");
+
+        // empty players from player select screen
+        $('#arena').empty();
+
+        // wait 2 sec before playering intro to restart game 
+        setTimeout(function () {
+            startGame();
+        }, 2000);
 
     }
 
@@ -214,6 +237,7 @@ $(document).ready(function () {
             }, 1000);
             $('.fightScreen').fadeOut();
             $('.playerScreen').fadeIn();
+            resetGame();
         } else {
 
             // if the Opponent is still alive damage the other player after 1 second
@@ -255,6 +279,7 @@ $(document).ready(function () {
                     }, 1000);
                     $('.fightScreen').fadeOut();
                     $('.playerScreen').fadeIn();
+                    resetGame();
 
                 }
             }, 1000);
