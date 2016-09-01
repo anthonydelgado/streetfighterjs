@@ -213,6 +213,7 @@ $(document).ready(function () {
                 soundEffect('win');
             }, 1000);
             $('.fightScreen').fadeOut();
+            $('.playerScreen').fadeIn();
         } else {
 
             // if the Opponent is still alive damage the other player after 1 second
@@ -253,6 +254,8 @@ $(document).ready(function () {
                     soundEffect('loose');
                     }, 1000);
                     $('.fightScreen').fadeOut();
+                    $('.playerScreen').fadeIn();
+
                 }
             }, 1000);
 
